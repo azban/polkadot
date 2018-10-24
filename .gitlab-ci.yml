@@ -14,7 +14,6 @@ variables:
 cache:
   key:                             "${CI_JOB_NAME}"
   paths:
-    - ./target/
     - ./.cargo/
 
 
@@ -72,15 +71,16 @@ dockerize:release:
   stage:                           publish
   dependencies:
     - build:rust:linux:release
+  cache: {}
   only:
     - master
     - tags
     - web
   tags:
     - shell
-  image: docker:stable
-  services:
-    - docker:dind
+  # image: docker:stable
+  # services:
+  #   - docker:dind
   variables:
     # DOCKER_HOST: tcp://localhost:2375
     # DOCKER_DRIVER: overlay2
