@@ -90,10 +90,8 @@ dockerize:release:
     - docker login -u $Docker_Hub_User_Parity -p $Docker_Hub_Pass_Parity
     - docker info
   script:
-    - ls -l 
-    - ls -l target/release
     - CONTAINER_TAG="${CI_COMMIT_TAG:-latest}"
-    - docker build --tag $CONTAINER_IMAGE:$CI_BUILD_REF --tag $CONTAINER_IMAGE:$CONTAINER_TAG -f $DOCKERFILE .
+    - docker build --tag $CONTAINER_IMAGE:$CI_BUILD_REF --tag $CONTAINER_IMAGE:$CONTAINER_TAG -f $DOCKERFILE ./target/release/
     - docker push $CONTAINER_IMAGE:$CONTAINER_TAG
     - docker push $CONTAINER_IMAGE:$CI_BUILD_REF
     - docker logout

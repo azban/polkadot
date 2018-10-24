@@ -9,7 +9,7 @@ RUN apt-get update && \
     apt-get clean
     
 
-COPY target/release/polkadot /usr/local/bin
+COPY ./polkadot /usr/local/bin
 
 
 
