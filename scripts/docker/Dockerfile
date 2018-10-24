@@ -1,4 +1,4 @@
-FROM phusion/baseimage:0.11
+FROM ubuntu:xenial
 LABEL maintainer "devops-team@parity.io"
 LABEL description="Paritytech Polkadot Node Implementation"
 
@@ -8,6 +8,7 @@ RUN apt-get update && \
     apt-get autoremove -y && \
     apt-get clean
     
+RUN	find /var/lib/apt/lists/ -type f -not -name lock -delete
 
 COPY ./polkadot /usr/local/bin
 
